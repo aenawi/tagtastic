@@ -49,6 +49,8 @@ jobs:
           args: --timeout=5m
 
       - name: Security scan (gosec)
+        # gosec version is pinned via Makefile GOSEC_VERSION so local and CI
+        # see identical rules. Bump there, not here.
         run: make security
 
       - name: Upload coverage
