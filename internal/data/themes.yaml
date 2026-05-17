@@ -429,3 +429,572 @@ themes:
       - name: "Uluru"
         aliases: ["uluru"]
         description: "Australia"
+  arabian_mammals:
+    id: arabian_mammals
+    name: Arabian Mammals
+    description: "Land mammals of the Arabian Peninsula and Arab Gulf (UAE, SA, OM, QA, BH, KW, YE)."
+    category: "Nature"
+    items:
+      - name: "Arabian Leopard"
+        aliases: ["arabian-leopard", "leopard"]
+        description: "Panthera pardus nimr · النمر العربي"
+      - name: "Arabian Oryx"
+        aliases: ["arabian-oryx", "oryx"]
+        description: "Oryx leucoryx · المها العربي"
+      - name: "Arabian Red Fox"
+        aliases: ["arabian-red-fox", "red-fox"]
+        description: "Vulpes vulpes arabica · الثعلب الأحمر العربي"
+      - name: "Arabian Tahr"
+        aliases: ["arabian-tahr", "tahr"]
+        description: "Arabitragus jayakari · الطهر العربي"
+      - name: "Arabian Wildcat"
+        aliases: ["arabian-wildcat", "wildcat"]
+        description: "Felis lybica · القط البري العربي"
+      - name: "Arabian Wolf"
+        aliases: ["arabian-wolf", "wolf"]
+        description: "Canis lupus arabs · الذئب العربي"
+      - name: "Blanford's Fox"
+        aliases: ["blanfords-fox"]
+        description: "Vulpes cana · ثعلب بلاندفورد"
+      - name: "Cape Hare"
+        aliases: ["cape-hare", "hare"]
+        description: "Lepus capensis · الأرنب البري"
+      - name: "Caracal"
+        aliases: ["caracal"]
+        description: "Caracal caracal · الوشق"
+      - name: "Cheesman's Gerbil"
+        aliases: ["cheesmans-gerbil", "gerbil"]
+        description: "Gerbillus cheesmani · جربيل تشيزمان"
+      - name: "Desert Hedgehog"
+        aliases: ["desert-hedgehog", "hedgehog"]
+        description: "Paraechinus aethiopicus · القنفذ الإثيوبي"
+      - name: "Dromedary Camel"
+        aliases: ["dromedary-camel", "camel"]
+        description: "Camelus dromedarius · الجمل العربي"
+      - name: "Dugong"
+        aliases: ["dugong"]
+        description: "Dugong dugon · بقرة البحر"
+      - name: "Egyptian Fruit Bat"
+        aliases: ["egyptian-fruit-bat", "fruit-bat"]
+        description: "Rousettus aegyptiacus · الخفاش المصري"
+      - name: "Fennec Fox"
+        aliases: ["fennec-fox", "fennec"]
+        description: "Vulpes zerda · ثعلب الفنك"
+      - name: "Goitered Gazelle"
+        aliases: ["goitered-gazelle"]
+        description: "Gazella subgutturosa · الغزال الريم"
+      - name: "Golden Jackal"
+        aliases: ["golden-jackal", "jackal"]
+        description: "Canis aureus · ابن آوى الذهبي"
+      - name: "Hamadryas Baboon"
+        aliases: ["hamadryas-baboon", "baboon"]
+        description: "Papio hamadryas · الرباح الحمدري"
+      - name: "Honey Badger"
+        aliases: ["honey-badger", "ratel"]
+        description: "Mellivora capensis · غرير العسل"
+      - name: "Indian Grey Mongoose"
+        aliases: ["indian-grey-mongoose", "mongoose"]
+        description: "Urva edwardsii · النمس الهندي"
+      - name: "Indo-Pacific Bottlenose Dolphin"
+        aliases: ["indo-pacific-bottlenose-dolphin"]
+        description: "Tursiops aduncus · الدلفين قاروري الأنف"
+      - name: "Indo-Pacific Humpback Dolphin"
+        aliases: ["indo-pacific-humpback-dolphin"]
+        description: "Sousa plumbea · دلفين الحدبة"
+      - name: "Lesser Egyptian Jerboa"
+        aliases: ["lesser-egyptian-jerboa", "jerboa"]
+        description: "Jaculus jaculus · اليربوع المصري"
+      - name: "Libyan Jird"
+        aliases: ["libyan-jird"]
+        description: "Meriones libycus · جرذ ليبيا"
+      - name: "Mountain Gazelle"
+        aliases: ["mountain-gazelle", "idmi"]
+        description: "Gazella gazella · الإدمي"
+      - name: "Nubian Ibex"
+        aliases: ["nubian-ibex", "ibex"]
+        description: "Capra nubiana · الوعل النوبي"
+      - name: "Rock Hyrax"
+        aliases: ["rock-hyrax", "hyrax"]
+        description: "Procavia capensis · الوبر الصخري"
+      - name: "Rüppell's Fox"
+        aliases: ["ruppells-fox"]
+        description: "Vulpes rueppellii · ثعلب روبل"
+      - name: "Sand Cat"
+        aliases: ["sand-cat"]
+        description: "Felis margarita · قط الرمال"
+      - name: "Sand Gazelle"
+        aliases: ["sand-gazelle", "reem"]
+        description: "Gazella marica · الريم"
+      - name: "Striped Hyena"
+        aliases: ["striped-hyena", "hyena"]
+        description: "Hyaena hyaena · الضبع المخطط"
+
+  arabian_birds:
+    id: arabian_birds
+    name: Arabian Birds
+    description: "Resident and characteristically Arabian birds of the Peninsula and Gulf coast."
+    category: "Nature"
+    items:
+      - name: "Arabian Babbler"
+        aliases: ["arabian-babbler", "babbler"]
+        description: "Argya squamiceps · ثرثار عربي"
+      - name: "Arabian Green Bee-eater"
+        aliases: ["arabian-green-bee-eater", "bee-eater"]
+        description: "Merops cyanophrys · الوروار الأخضر العربي"
+      - name: "Arabian Partridge"
+        aliases: ["arabian-partridge", "partridge"]
+        description: "Alectoris melanocephala · الحجل العربي"
+      - name: "Bar-tailed Lark"
+        aliases: ["bar-tailed-lark"]
+        description: "Ammomanes cincturus · قبرة مخططة الذيل"
+      - name: "Bonelli's Eagle"
+        aliases: ["bonellis-eagle"]
+        description: "Aquila fasciata · عقاب بونلي"
+      - name: "Bridled Tern"
+        aliases: ["bridled-tern"]
+        description: "Onychoprion anaethetus · الخرشنة الملجمة"
+      - name: "Brown-necked Raven"
+        aliases: ["brown-necked-raven", "raven"]
+        description: "Corvus ruficollis · الغراب أسحم"
+      - name: "Chestnut-bellied Sandgrouse"
+        aliases: ["chestnut-bellied-sandgrouse", "sandgrouse"]
+        description: "Pterocles exustus · القطا كستنائي البطن"
+      - name: "Chukar"
+        aliases: ["chukar"]
+        description: "Alectoris chukar · الشكار"
+      - name: "Collared Kingfisher"
+        aliases: ["collared-kingfisher"]
+        description: "Todiramphus chloris · رفراف مطوق"
+      - name: "Crab-plover"
+        aliases: ["crab-plover"]
+        description: "Dromas ardeola · زقزاق السرطان"
+      - name: "Crested Lark"
+        aliases: ["crested-lark"]
+        description: "Galerida cristata · القبرة المتوجة"
+      - name: "Desert Lark"
+        aliases: ["desert-lark"]
+        description: "Ammomanes deserti · قبرة الصحراء"
+      - name: "Desert Wheatear"
+        aliases: ["desert-wheatear"]
+        description: "Oenanthe deserti · أبلق صحراوي"
+      - name: "Egyptian Vulture"
+        aliases: ["egyptian-vulture"]
+        description: "Neophron percnopterus · الرخمة المصرية"
+      - name: "Eurasian Hoopoe"
+        aliases: ["eurasian-hoopoe", "hoopoe"]
+        description: "Upupa epops · الهدهد"
+      - name: "Glossy Ibis"
+        aliases: ["glossy-ibis", "ibis"]
+        description: "Plegadis falcinellus · أبو منجل اللامع"
+      - name: "Golden Eagle"
+        aliases: ["golden-eagle"]
+        description: "Aquila chrysaetos · العقاب الذهبية"
+      - name: "Greater Flamingo"
+        aliases: ["greater-flamingo", "flamingo"]
+        description: "Phoenicopterus roseus · النحام الكبير"
+      - name: "Greater Hoopoe-lark"
+        aliases: ["greater-hoopoe-lark"]
+        description: "Alaemon alaudipes · قبرة هدهدية"
+      - name: "Greater Sand Plover"
+        aliases: ["greater-sand-plover"]
+        description: "Anarhynchus leschenaultii · زقزاق الرمل الكبير"
+      - name: "Grey Heron"
+        aliases: ["grey-heron", "heron"]
+        description: "Ardea cinerea · مالك الحزين الرمادي"
+      - name: "Griffon Vulture"
+        aliases: ["griffon-vulture", "griffon"]
+        description: "Gyps fulvus · النسر الأسمر"
+      - name: "Hooded Wheatear"
+        aliases: ["hooded-wheatear"]
+        description: "Oenanthe monacha · أبلق برقعي"
+      - name: "Houbara Bustard"
+        aliases: ["houbara-bustard", "houbara"]
+        description: "Chlamydotis macqueenii · الحبارى"
+      - name: "Hume's Wheatear"
+        aliases: ["humes-wheatear"]
+        description: "Oenanthe albonigra · أبلق هيوم"
+      - name: "Hypocolius"
+        aliases: ["hypocolius"]
+        description: "Hypocolius ampelinus · الزرزور البابلي"
+      - name: "Indian Roller"
+        aliases: ["indian-roller", "roller"]
+        description: "Coracias benghalensis · شقراق هندي"
+      - name: "Isabelline Wheatear"
+        aliases: ["isabelline-wheatear"]
+        description: "Oenanthe isabellina · أبلق إيزابيلي"
+      - name: "Lappet-faced Vulture"
+        aliases: ["lappet-faced-vulture"]
+        description: "Torgos tracheliotos · النسر الأذون"
+      - name: "Laughing Dove"
+        aliases: ["laughing-dove", "dove"]
+        description: "Spilopelia senegalensis · اليمامة الضاحكة"
+      - name: "Lichtenstein's Sandgrouse"
+        aliases: ["lichtensteins-sandgrouse"]
+        description: "Pterocles lichtensteinii · قطا ليختنشتاين"
+      - name: "Little Egret"
+        aliases: ["little-egret"]
+        description: "Egretta garzetta · البلشون الصغير"
+      - name: "Long-legged Buzzard"
+        aliases: ["long-legged-buzzard"]
+        description: "Buteo rufinus · صقر جراح طويل الساق"
+      - name: "MacQueen's Bustard"
+        aliases: ["macqueens-bustard"]
+        description: "Chlamydotis macqueenii · حبارى آسيوية"
+      - name: "Northern Wheatear"
+        aliases: ["northern-wheatear", "wheatear"]
+        description: "Oenanthe oenanthe · الأبلق الشمالي"
+      - name: "Omani Owl"
+        aliases: ["omani-owl"]
+        description: "Strix butleri · بومة عمان"
+      - name: "Osprey"
+        aliases: ["osprey"]
+        description: "Pandion haliaetus · العقاب النساري"
+      - name: "Pallid Scops-owl"
+        aliases: ["pallid-scops-owl"]
+        description: "Otus brucei · ثبج شاحب"
+      - name: "Peregrine Falcon"
+        aliases: ["peregrine-falcon", "peregrine"]
+        description: "Falco peregrinus · الشاهين"
+      - name: "Pharaoh Eagle-owl"
+        aliases: ["pharaoh-eagle-owl"]
+        description: "Bubo ascalaphus · بومة فرعونية"
+      - name: "Pied Wheatear"
+        aliases: ["pied-wheatear"]
+        description: "Oenanthe pleschanka · أبلق رهباني"
+      - name: "Pin-tailed Sandgrouse"
+        aliases: ["pin-tailed-sandgrouse"]
+        description: "Pterocles alchata · قطا مدبب الذيل"
+      - name: "Purple Sunbird"
+        aliases: ["purple-sunbird"]
+        description: "Cinnyris asiaticus · التمير الأرجواني"
+      - name: "Red-billed Tropicbird"
+        aliases: ["red-billed-tropicbird"]
+        description: "Phaethon aethereus · الطائر المداري أحمر المنقار"
+      - name: "Red-wattled Lapwing"
+        aliases: ["red-wattled-lapwing"]
+        description: "Vanellus indicus · قطقاط أحمر العثنون"
+      - name: "Ruddy Shelduck"
+        aliases: ["ruddy-shelduck"]
+        description: "Tadorna ferruginea · الشهرمان الصدئ"
+      - name: "Saker Falcon"
+        aliases: ["saker-falcon", "saker"]
+        description: "Falco cherrug · الصقر الحر"
+      - name: "Sand Partridge"
+        aliases: ["sand-partridge"]
+        description: "Ammoperdix heyi · حجل الرمل"
+      - name: "Scrub Warbler"
+        aliases: ["scrub-warbler"]
+        description: "Scotocerca inquieta · الدخلة الصحراوية"
+      - name: "Socotra Cormorant"
+        aliases: ["socotra-cormorant"]
+        description: "Phalacrocorax nigrogularis · غاق سقطرى"
+      - name: "Sooty Falcon"
+        aliases: ["sooty-falcon"]
+        description: "Falco concolor · الصقر الأسحم"
+      - name: "Sooty Gull"
+        aliases: ["sooty-gull"]
+        description: "Ichthyaetus hemprichii · النورس الأسحم"
+      - name: "Spur-winged Lapwing"
+        aliases: ["spur-winged-lapwing"]
+        description: "Vanellus spinosus · قطقاط ذو السنام"
+      - name: "Steppe Eagle"
+        aliases: ["steppe-eagle"]
+        description: "Aquila nipalensis · عقاب السهوب"
+      - name: "Striated Heron"
+        aliases: ["striated-heron"]
+        description: "Butorides striata · واق مخطط"
+      - name: "Western Reef Heron"
+        aliases: ["western-reef-heron"]
+        description: "Egretta gularis · بلشون الصخور"
+      - name: "White-cheeked Tern"
+        aliases: ["white-cheeked-tern"]
+        description: "Sterna repressa · الخرشنة بيضاء الخد"
+      - name: "White-eared Bulbul"
+        aliases: ["white-eared-bulbul", "bulbul"]
+        description: "Pycnonotus leucotis · البلبل أبيض الأذن"
+      - name: "Yemen Linnet"
+        aliases: ["yemen-linnet"]
+        description: "Linaria yemenensis · تفاحي اليمن"
+      - name: "Yemen Thrush"
+        aliases: ["yemen-thrush"]
+        description: "Turdus menachensis · سمنة اليمن"
+      - name: "Yemen Warbler"
+        aliases: ["yemen-warbler"]
+        description: "Curruca buryi · دخلة اليمن"
+
+  arabian_trees:
+    id: arabian_trees
+    name: Arabian Trees
+    description: "Native and characteristic trees and woody plants of the Arabian Peninsula."
+    category: "Nature"
+    items:
+      - name: "Acridocarpus"
+        aliases: ["acridocarpus"]
+        description: "Acridocarpus orientalis · الكدار"
+      - name: "Arak"
+        aliases: ["arak", "miswak", "siwak"]
+        description: "Salvadora persica · الأراك (toothbrush tree)"
+      - name: "Athel Tamarisk"
+        aliases: ["athel-tamarisk", "athel"]
+        description: "Tamarix aphylla · الأثل"
+      - name: "Caper Bush"
+        aliases: ["caper-bush", "caper"]
+        description: "Capparis spinosa · الكبر"
+      - name: "Calligonum"
+        aliases: ["calligonum", "arta"]
+        description: "Calligonum comosum · الأرطى"
+      - name: "Christ's-thorn Jujube"
+        aliases: ["christs-thorn-jujube", "sidr"]
+        description: "Ziziphus spina-christi · السدر"
+      - name: "Date Palm"
+        aliases: ["date-palm", "nakhl"]
+        description: "Phoenix dactylifera · نخلة التمر"
+      - name: "Desert Hyacinth"
+        aliases: ["desert-hyacinth", "thanoon"]
+        description: "Cistanche tubulosa · الذنون"
+      - name: "Doum Palm"
+        aliases: ["doum-palm", "doum"]
+        description: "Hyphaene thebaica · نخيل الدوم"
+      - name: "Dragon Blood Tree"
+        aliases: ["dragon-blood-tree"]
+        description: "Dracaena cinnabari · دم الأخوين (Socotra endemic)"
+      - name: "Frankincense Tree"
+        aliases: ["frankincense-tree", "luban"]
+        description: "Boswellia sacra · شجرة اللبان"
+      - name: "Ghaf"
+        aliases: ["ghaf", "khejri"]
+        description: "Prosopis cineraria · الغاف (UAE national tree)"
+      - name: "Grey Mangrove"
+        aliases: ["grey-mangrove", "qurm"]
+        description: "Avicennia marina · القرم"
+      - name: "Henna"
+        aliases: ["henna"]
+        description: "Lawsonia inermis · الحناء"
+      - name: "Juniper"
+        aliases: ["juniper", "araar"]
+        description: "Juniperus procera · العرعر"
+      - name: "Markh"
+        aliases: ["markh"]
+        description: "Leptadenia pyrotechnica · المرخ"
+      - name: "Moringa"
+        aliases: ["moringa", "shoa"]
+        description: "Moringa peregrina · الشوع"
+      - name: "Myrrh"
+        aliases: ["myrrh"]
+        description: "Commiphora myrrha · المر"
+      - name: "Pomegranate"
+        aliases: ["pomegranate", "ruman"]
+        description: "Punica granatum · الرمان"
+      - name: "Red Mangrove"
+        aliases: ["red-mangrove"]
+        description: "Rhizophora mucronata · القرم الأحمر"
+      - name: "Rimth"
+        aliases: ["rimth"]
+        description: "Haloxylon salicornicum · الرمث"
+      - name: "Salam Acacia"
+        aliases: ["salam-acacia", "salam"]
+        description: "Vachellia ehrenbergiana · السلم"
+      - name: "Samar Acacia"
+        aliases: ["samar-acacia", "samar"]
+        description: "Vachellia tortilis · السمر (umbrella thorn)"
+      - name: "Sayal Acacia"
+        aliases: ["sayal-acacia", "sayal"]
+        description: "Vachellia seyal · السيال"
+      - name: "Sodom Apple"
+        aliases: ["sodom-apple", "ushar"]
+        description: "Calotropis procera · العشر"
+      - name: "Sweet Acacia"
+        aliases: ["sweet-acacia"]
+        description: "Vachellia gerrardii · السمرة"
+      - name: "Twisted Acacia"
+        aliases: ["twisted-acacia"]
+        description: "Vachellia nilotica · القرض"
+      - name: "Wild Jujube"
+        aliases: ["wild-jujube"]
+        description: "Ziziphus nummularia · السدر البري"
+      - name: "Wild Olive"
+        aliases: ["wild-olive"]
+        description: "Olea europaea cuspidata · الزيتون البري"
+      - name: "Yemeni Aloe"
+        aliases: ["yemeni-aloe", "aloe"]
+        description: "Aloe sabae · الصبار اليمني"
+      - name: "Zygophyllum"
+        aliases: ["zygophyllum"]
+        description: "Tetraena qatarense · الحرم"
+
+  arabian_reptiles:
+    id: arabian_reptiles
+    name: Arabian Reptiles
+    description: "Lizards, snakes, and sea turtles of the Arabian Peninsula and Arab Gulf."
+    category: "Nature"
+    items:
+      - name: "Arabian Cobra"
+        aliases: ["arabian-cobra", "cobra"]
+        description: "Naja arabica · الكوبرا العربية"
+      - name: "Arabian Fan-fingered Gecko"
+        aliases: ["arabian-fan-fingered-gecko"]
+        description: "Ptyodactylus hasselquistii · أبو بريص عربي"
+      - name: "Arabian Horned Viper"
+        aliases: ["arabian-horned-viper"]
+        description: "Cerastes gasperettii · الأفعى المقرنة العربية"
+      - name: "Arabian Sand Boa"
+        aliases: ["arabian-sand-boa"]
+        description: "Eryx jayakari · الدساس العربي"
+      - name: "Arabian Toad-headed Agama"
+        aliases: ["arabian-toad-headed-agama"]
+        description: "Phrynocephalus arabicus · أم سعف عربية"
+      - name: "Carpet Viper"
+        aliases: ["carpet-viper"]
+        description: "Echis omanensis · أفعى عمان السجادية"
+      - name: "Desert Monitor"
+        aliases: ["desert-monitor", "varanus"]
+        description: "Varanus griseus · ورل الصحراء"
+      - name: "Dhub"
+        aliases: ["dhub", "spiny-tailed-lizard", "uromastyx"]
+        description: "Uromastyx aegyptia · الضب"
+      - name: "Egyptian Sand Boa"
+        aliases: ["egyptian-sand-boa"]
+        description: "Eryx colubrinus · الدساس المصري"
+      - name: "False Horned Viper"
+        aliases: ["false-horned-viper"]
+        description: "Pseudocerastes persicus · الأفعى الفارسية"
+      - name: "Green Sea Turtle"
+        aliases: ["green-sea-turtle"]
+        description: "Chelonia mydas · السلحفاة الخضراء"
+      - name: "Hawksbill Turtle"
+        aliases: ["hawksbill-turtle", "hawksbill"]
+        description: "Eretmochelys imbricata · سلحفاة منقار الصقر"
+      - name: "Loggerhead Turtle"
+        aliases: ["loggerhead-turtle", "loggerhead"]
+        description: "Caretta caretta · السلحفاة ضخمة الرأس"
+      - name: "Olive Ridley Turtle"
+        aliases: ["olive-ridley-turtle"]
+        description: "Lepidochelys olivacea · سلحفاة الزيتون"
+      - name: "Persian Gecko"
+        aliases: ["persian-gecko"]
+        description: "Pristurus rupestris · جيكو فارسي"
+      - name: "Persian Horned Viper"
+        aliases: ["persian-horned-viper"]
+        description: "Pseudocerastes persicus · الأفعى المقرنة الفارسية"
+      - name: "Pharaoh Skink"
+        aliases: ["pharaoh-skink"]
+        description: "Chalcides ocellatus · سحلية فرعونية"
+      - name: "Ruus al Jibal Fan-footed Gecko"
+        aliases: ["ruus-al-jibal-fan-footed-gecko"]
+        description: "Ptyodactylus ruusaljibalicus · جيكو روس الجبال"
+      - name: "Saw-scaled Viper"
+        aliases: ["saw-scaled-viper"]
+        description: "Echis carinatus · الأفعى المنشارية"
+      - name: "Sinai Agama"
+        aliases: ["sinai-agama"]
+        description: "Pseudotrapelus sinaitus · حرذون سيناء"
+      - name: "Wonder Gecko"
+        aliases: ["wonder-gecko"]
+        description: "Teratoscincus keyserlingii · الجيكو العجيب"
+      - name: "Yellow Sea Snake"
+        aliases: ["yellow-sea-snake"]
+        description: "Hydrophis spiralis · ثعبان البحر الأصفر"
+      - name: "Yellow-spotted Agama"
+        aliases: ["yellow-spotted-agama"]
+        description: "Trapelus flavimaculatus · حرذون مرقش"
+      - name: "Yemeni Spiny-tailed Lizard"
+        aliases: ["yemeni-spiny-tailed-lizard"]
+        description: "Uromastyx benti · ضب اليمن"
+
+  arabian_marine:
+    id: arabian_marine
+    name: Arabian Marine
+    description: "Marine life of the Arabian Gulf, Sea of Oman, and Arabian Sea — cetaceans, fish, sharks, rays, and shellfish."
+    category: "Nature"
+    items:
+      - name: "Arabian Sea Humpback Whale"
+        aliases: ["arabian-sea-humpback-whale"]
+        description: "Megaptera novaeangliae · الحوت الحدباء العربي"
+      - name: "Beaked Sea Snake"
+        aliases: ["beaked-sea-snake"]
+        description: "Hydrophis schistosus · ثعبان البحر منقاري"
+      - name: "Blacktip Reef Shark"
+        aliases: ["blacktip-reef-shark"]
+        description: "Carcharhinus melanopterus · قرش الشعاب الأسود"
+      - name: "Bryde's Whale"
+        aliases: ["brydes-whale"]
+        description: "Balaenoptera brydei · حوت بريد"
+      - name: "Bull Shark"
+        aliases: ["bull-shark"]
+        description: "Carcharhinus leucas · القرش الثور"
+      - name: "Cuttlefish"
+        aliases: ["cuttlefish"]
+        description: "Sepia pharaonis · الحبار الفرعوني"
+      - name: "Dugong"
+        aliases: ["dugong"]
+        description: "Dugong dugon · بقرة البحر"
+      - name: "False Killer Whale"
+        aliases: ["false-killer-whale"]
+        description: "Pseudorca crassidens · الحوت القاتل الزائف"
+      - name: "Finless Porpoise"
+        aliases: ["finless-porpoise"]
+        description: "Neophocaena phocaenoides · الخنزير البحري عديم الزعنفة"
+      - name: "Giant Trevally"
+        aliases: ["giant-trevally"]
+        description: "Caranx ignobilis · البياض الكبير"
+      - name: "Hammour Grouper"
+        aliases: ["hammour-grouper", "hammour"]
+        description: "Epinephelus coioides · الهامور"
+      - name: "Indian Mackerel"
+        aliases: ["indian-mackerel"]
+        description: "Rastrelliger kanagurta · الإسقمري الهندي"
+      - name: "Indo-Pacific Bottlenose Dolphin"
+        aliases: ["indo-pacific-bottlenose-dolphin"]
+        description: "Tursiops aduncus · الدلفين قاروري الأنف"
+      - name: "Indo-Pacific Humpback Dolphin"
+        aliases: ["indo-pacific-humpback-dolphin"]
+        description: "Sousa plumbea · دلفين الحدبة"
+      - name: "Killer Whale"
+        aliases: ["killer-whale", "orca"]
+        description: "Orcinus orca · الحوت القاتل"
+      - name: "Kingfish"
+        aliases: ["kingfish", "kanad"]
+        description: "Scomberomorus commerson · الكنعد"
+      - name: "Manta Ray"
+        aliases: ["manta-ray", "manta"]
+        description: "Mobula alfredi · الشيطان البحري"
+      - name: "Pearl Oyster"
+        aliases: ["pearl-oyster"]
+        description: "Pinctada radiata · محار اللؤلؤ"
+      - name: "Pygmy Blue Whale"
+        aliases: ["pygmy-blue-whale"]
+        description: "Balaenoptera musculus brevicauda · الحوت الأزرق الصغير"
+      - name: "Risso's Dolphin"
+        aliases: ["rissos-dolphin"]
+        description: "Grampus griseus · دلفين ريسو"
+      - name: "Sailfish"
+        aliases: ["sailfish"]
+        description: "Istiophorus platypterus · سمكة الشراع"
+      - name: "Sergeant Major"
+        aliases: ["sergeant-major"]
+        description: "Abudefduf saxatilis · الرقيب الكبير"
+      - name: "Sobaity Sea Bream"
+        aliases: ["sobaity-sea-bream", "sobaity"]
+        description: "Sparidentex hasta · السبيطي"
+      - name: "Spangled Emperor"
+        aliases: ["spangled-emperor", "sheri"]
+        description: "Lethrinus nebulosus · الشعري"
+      - name: "Sperm Whale"
+        aliases: ["sperm-whale"]
+        description: "Physeter macrocephalus · حوت العنبر"
+      - name: "Spinner Dolphin"
+        aliases: ["spinner-dolphin"]
+        description: "Stenella longirostris · دلفين الغزال"
+      - name: "Striped Dolphin"
+        aliases: ["striped-dolphin"]
+        description: "Stenella coeruleoalba · الدلفين المخطط"
+      - name: "Two-banded Sea Bream"
+        aliases: ["two-banded-sea-bream"]
+        description: "Acanthopagrus bifasciatus · المرجان"
+      - name: "Whale Shark"
+        aliases: ["whale-shark"]
+        description: "Rhincodon typus · قرش الحوت"
+      - name: "Yellowbar Angelfish"
+        aliases: ["yellowbar-angelfish"]
+        description: "Pomacanthus maculosus · إمبراطور البحر الأصفر"
+
