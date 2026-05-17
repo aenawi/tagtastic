@@ -830,7 +830,7 @@ func updateRepoConfig(path, codename, version string) error {
 	}
 
 	if cfg.DefaultTheme == "" {
-		cfg.DefaultTheme = "crayola_colors"
+		cfg.DefaultTheme = "arabian_birds"
 	}
 	if cfg.DefaultFormat == "" {
 		cfg.DefaultFormat = "text"

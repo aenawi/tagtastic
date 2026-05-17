@@ -4,7 +4,22 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
 ## [Unreleased]
+
+### Added
+- N/A
+
+### Changed
+- N/A
+
+### Fixed
+- N/A
+
+## [0.2.0] – "Arabian Babbler" – 2026-05-17
+
+### ⚠️ Breaking changes
+- **Default theme switched from `crayola_colors` to `arabian_birds`** across the CLI flag defaults (`generate --theme`, `list --theme`), the config-package default (`internal/config/config.Default()`), the release helper's `.tagtastic.yaml` seed, and this repo's own `.tagtastic.yaml`. Users who relied on `tagtastic generate` (no `--theme`) returning Crayola colours must now pass `--theme crayola_colors` explicitly. The `crayola_colors` theme is unchanged and still ships embedded in the binary.
 
 ### Added
 - Five new themes covering Arabian Peninsula and Arab Gulf wildlife: `arabian_mammals` (31 items), `arabian_birds` (62 items), `arabian_trees` (31 items), `arabian_reptiles` (24 items), and `arabian_marine` (30 items). Each item carries an English display name, dash-slug aliases, and a description containing the scientific name and Arabic vernacular.
@@ -89,9 +104,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]: https://github.com/aenawi/tagtastic/compare/v0.2.0-beta.1...HEAD
+
+[Unreleased]: https://github.com/aenawi/tagtastic/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/aenawi/tagtastic/compare/vUnreleased...v0.2.0
 [0.2.0-beta.1]: https://github.com/aenawi/tagtastic/compare/vUnreleased...v0.2.0-beta.1
-[Unreleased]: https://github.com/aenawi/tagtastic/compare/v0.1.1-beta.1...HEAD
 [0.1.1-beta.1]: https://github.com/aenawi/tagtastic/compare/v0.1.0-beta.2...v0.1.1-beta.1
 [0.1.0-beta.2]: https://github.com/aenawi/tagtastic/compare/v0.1.0-beta.1...v0.1.0-beta.2
 [0.1.0-beta.1]: https://github.com/aenawi/tagtastic/compare/v0.1.0-alpha.1...v0.1.0-beta.1
