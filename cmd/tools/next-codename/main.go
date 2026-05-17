@@ -3,10 +3,11 @@
 //
 // This file is part of TAGtastic and is licensed under the MIT License.
 
-// next-codename prints the alphabetically next Crayola colour that has not
-// yet been used as a TAGtastic release codename. The colour list comes from
-// the embedded `crayola_colors` theme (internal/data/themes.yaml); used
-// codenames are detected by parsing CHANGELOG.md.
+// next-codename prints the alphabetically next item from the release
+// codename theme that has not yet been used as a TAGtastic release
+// codename. The item list comes from the embedded codename theme
+// (internal/data/themes.yaml); used codenames are detected by parsing
+// CHANGELOG.md.
 package main
 
 import (
@@ -19,7 +20,10 @@ import (
 	"github.com/aenawi/tagtastic/internal/data"
 )
 
-const codenameThemeID = "crayola_colors"
+// codenameThemeID is the theme inside internal/data/themes.yaml that
+// supplies TAGtastic's own release codenames. Switched from
+// crayola_colors to arabian_birds at v0.2.0.
+const codenameThemeID = "arabian_birds"
 
 func main() {
 	root, err := repoRoot()

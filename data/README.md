@@ -60,21 +60,27 @@ Rules:
 - `category` is free-text but kept consistent with sibling themes
   (`Colors`, `Nature`, `Places`).
 
-## Release codename source (`crayola_colors`)
+## Release codename source
 
-TAGtastic uses one theme for two jobs:
+TAGtastic distinguishes two codename jobs:
 
-1. **End-user codenames** — `tagtastic generate --theme crayola_colors`
-   produces a codename for the user's release.
+1. **End-user codenames** — `tagtastic generate --theme <id>` produces a
+   codename for the user's own release. The user picks the theme.
 2. **TAGtastic's own release codenames** — `make codename` (and the
-   release helper at [`cmd/tools/release`](../cmd/tools/release/)) picks the
-   alphabetically next colour that has not yet appeared in
-   [`CHANGELOG.md`](../CHANGELOG.md). That codename is stamped on the
-   GitHub release title and `git tag` annotation.
+   release helper at [`cmd/tools/release`](../cmd/tools/release/)) picks
+   the alphabetically next item from a fixed *release theme* that has
+   not yet appeared in [`CHANGELOG.md`](../CHANGELOG.md). That codename
+   is stamped on the GitHub release title and `git tag` annotation.
 
-Both jobs read from the same `crayola_colors` theme inside this file (via
-the embedded copy at runtime). There is no separate Crayola JSON file —
-the catalogue is the single source of truth.
+The release theme is set by the `codenameThemeID` constant in both
+[`cmd/tools/next-codename/main.go`](../cmd/tools/next-codename/main.go)
+and [`cmd/tools/release/main.go`](../cmd/tools/release/main.go).
+Current value: **`arabian_birds`** (switched at v0.2.0). Previous
+releases used `crayola_colors`.
+
+Both tools read the chosen theme from the embedded copy of this file at
+runtime — there is no separate JSON snapshot. The YAML catalogue is the
+single source of truth.
 
 ## Adding the Arabian wildlife pack
 

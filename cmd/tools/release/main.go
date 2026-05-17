@@ -24,8 +24,9 @@ import (
 )
 
 // codenameThemeID names the theme inside internal/data/themes.yaml that
-// supplies TAGtastic's own release codenames (alphabetical Crayola colors).
-const codenameThemeID = "crayola_colors"
+// supplies TAGtastic's own release codenames. Switched from
+// crayola_colors to arabian_birds at v0.2.0.
+const codenameThemeID = "arabian_birds"
 
 const unreleasedTemplate = `## [Unreleased]
 
