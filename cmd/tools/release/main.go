@@ -204,6 +204,7 @@ func shouldShowBanner() bool {
 	if os.Getenv("CI") != "" {
 		return false
 	}
+	// #nosec G115 - os.Stdout.Fd() returns a small fd (0-2); int conversion cannot overflow
 	return term.IsTerminal(int(os.Stdout.Fd()))
 }
 
@@ -783,6 +784,7 @@ func hasFlag(args []string, names ...string) bool {
 
 func reportError(err error, code int, jsonErrors, quiet bool, usage func()) {
 	if jsonErrors {
+		// #nosec G705 - CLI stderr output, %q escapes; no web/HTML context
 		fmt.Fprintf(os.Stderr, "{\"error\":%q,\"code\":%d}\n", err.Error(), code)
 		os.Exit(code)
 	}

@@ -1,8 +1,11 @@
 APP_NAME=tagtastic
 # Pin gosec so local and CI runs use the same rule set. gosec adds rules
-# across minor versions (e.g. G703 was new in 2.22+); leaving this at @latest
+# across minor versions (e.g. G703 was new in 2.23+); leaving this at @latest
 # caused a CI surprise during the v0.2.0 cut.
-GOSEC_VERSION ?= v2.26.1
+#
+# v2.23.0 is the latest gosec compatible with our Go 1.24 floor (go.mod).
+# v2.24.0+ requires Go 1.25.0. Bump this only together with go.mod's Go line.
+GOSEC_VERSION ?= v2.23.0
 
 .PHONY: help build test lint fmt clean release codename sync-themes release-prep release-bump quality security
 
