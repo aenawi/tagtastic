@@ -16,6 +16,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - N/A
 
+## [0.2.2] – "Arabian Partridge" – 2026-05-17
+
+### Fixed
+- **Release helper now commits `.tagtastic.yaml` alongside `CHANGELOG.md` and `VERSION`.** The previous flow updated `used_codenames` on disk after `commitRelease` had already run, leaving the audit-trail change in the working tree. `cmd/tools/release` now writes `.tagtastic.yaml` first (via `updateRepoConfig`) and stages it as part of the release commit (via a new `releaseCommitPaths` helper that gracefully omits the file when it doesn't exist).
+- Backfilled `.tagtastic.yaml` with the `0.2.1: Arabian Green Bee-eater` entry that the helper failed to commit during the v0.2.1 cut.
+
+### Added
+- Two regression tests in `cmd/tools/release/main_test.go` covering `releaseCommitPaths` for the present and absent cases.
+
 ## [0.2.1] – "Arabian Green Bee-eater" – 2026-05-17
 
 ### Fixed
@@ -121,7 +130,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]: https://github.com/aenawi/tagtastic/compare/v0.2.1...HEAD
+
+[Unreleased]: https://github.com/aenawi/tagtastic/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/aenawi/tagtastic/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/aenawi/tagtastic/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/aenawi/tagtastic/compare/v0.2.0-beta.1...v0.2.0
 [0.2.0-beta.1]: https://github.com/aenawi/tagtastic/compare/v0.1.1-beta.1...v0.2.0-beta.1
