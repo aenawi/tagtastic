@@ -1,4 +1,8 @@
 APP_NAME=tagtastic
+# Pin gosec so local and CI runs use the same rule set. gosec adds rules
+# across minor versions (e.g. G703 was new in 2.22+); leaving this at @latest
+# caused a CI surprise during the v0.2.0 cut.
+GOSEC_VERSION ?= v2.26.1
 
 .PHONY: help build test lint fmt clean release codename sync-themes release-prep release-bump quality security
 
@@ -54,5 +58,6 @@ quality:
 	golangci-lint run ./...
 
 security:
-	@command -v gosec >/dev/null 2>&1 || { echo "Installing gosec..."; go install github.com/securego/gosec/v2/cmd/gosec@latest; }
+	@echo "==> ensuring gosec $(GOSEC_VERSION) is installed"
+	@go install github.com/securego/gosec/v2/cmd/gosec@$(GOSEC_VERSION)
 	gosec -exclude=G304,G306 ./...
