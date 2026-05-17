@@ -276,7 +276,17 @@ func updateChangelog(path, version, codename, date string) error {
 
 	releaseBlock := fmt.Sprintf("%s\n\n%s\n\n", releaseHeader, newRelease)
 
-	updated := sections.preamble + unreleasedTemplate + "\n" + releaseBlock + sections.remainder
+	// Normalize the preamble so it always ends with exactly one blank line
+	// before the next heading. splitChangelog leaves preamble with whatever
+	// trailing whitespace happened to be in the source file (often a single
+	// '\n'), which when concatenated against the '## [Unreleased]' header
+	// produced no separating blank line.
+	preamble := strings.TrimRight(sections.preamble, "\n")
+	if preamble != "" {
+		preamble += "\n\n"
+	}
+
+	updated := preamble + unreleasedTemplate + "\n" + releaseBlock + sections.remainder
 	updated = updateChangelogLinks(updated, version)
 
 	return os.WriteFile(path, []byte(updated), 0o644)
