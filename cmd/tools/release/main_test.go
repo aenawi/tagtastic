@@ -25,8 +25,8 @@ func TestUpdateRepoConfigCreatesFile(t *testing.T) {
 	}
 	content := string(payload)
 
-	if !strings.Contains(content, "default_theme: crayola_colors") {
-		t.Fatalf("expected default_theme to be set")
+	if !strings.Contains(content, "default_theme: arabian_birds") {
+		t.Fatalf("expected default_theme to be set to arabian_birds")
 	}
 	if !strings.Contains(content, "0.1.0-beta.1: Almond") {
 		t.Fatalf("expected codename to be recorded")

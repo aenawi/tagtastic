@@ -39,7 +39,7 @@ func DefaultPath() (string, error) {
 
 func Default() Config {
 	return Config{
-		DefaultTheme:  "crayola_colors",
+		DefaultTheme:  "arabian_birds",
 		DefaultFormat: "text",
 		UsedCodenames: map[string]string{},
 		API: APIConfig{

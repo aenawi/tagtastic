@@ -120,7 +120,7 @@ tagtastic generate --format json
 
 **Generate command:**
 
-- `--theme, -t <theme>`: Theme to use (default: `crayola_colors`)
+- `--theme, -t <theme>`: Theme to use (default: `arabian_birds`, since v0.2.0)
 - `--seed, -s <int>`: Random seed (0 uses current timestamp)
 - `--exclude, -e <items>`: Comma-separated items to exclude
 - `--format, -f <format>`: Output format (`text`, `json`, `shell`)
@@ -361,7 +361,18 @@ archives:
 
 ### Release Naming Convention
 
-This project uses **Crayola colors** from the [Corpora repository](https://github.com/dariusk/corpora/blob/master/data/colors/crayola.json) as release codenames.
+Starting with **v0.2.0**, this project uses **Arabian Peninsula bird
+names** as release codenames. The list ships as the `arabian_birds` theme
+inside [`data/themes.yaml`](data/themes.yaml). Earlier releases
+(v0.1.0-alpha.1 through v0.2.0-beta.1) used Crayola crayon colours from
+the `crayola_colors` theme, sourced from
+[Darius Kazemi's Corpora project](https://github.com/dariusk/corpora)
+(see [`data/colors/crayola.json`](https://github.com/dariusk/corpora/blob/master/data/colors/crayola.json) upstream).
+
+To change the codename theme in the future, update the
+`codenameThemeID` constant in [`cmd/tools/next-codename/main.go`](cmd/tools/next-codename/main.go)
+and [`cmd/tools/release/main.go`](cmd/tools/release/main.go) to any
+theme ID present in `data/themes.yaml`.
 
 **Rules:**
 
@@ -369,17 +380,21 @@ This project uses **Crayola colors** from the [Corpora repository](https://githu
 - Recorded in `CHANGELOG.md`, `.tagtastic.yaml`, and git tag annotations
 - SemVer tags remain the source of truth (`v1.0.0-beta.1`)
 
-**Example changelog entry:**
+**Example changelog entries:**
 
 ```markdown
-## [0.1.0-beta.1] – "Almond" – 2026-01-03
+## [0.2.0]         – "Arabian Babbler" – 2026-05-17   (new theme: arabian_birds)
+## [0.2.0-beta.1]  – "Asparagus"       – 2026-01-04   (legacy theme: crayola_colors)
+## [0.1.0-beta.1]  – "Almond"          – 2026-01-03   (legacy theme: crayola_colors)
 ```
 
 **Data sources:**
 
-- `data/crayola.json`: Raw Corpora snapshot
-- `data/themes.yaml`: Structured theme data
-- `internal/data/themes.yaml`: Embedded copy (sync with `make sync-themes`)
+- [`data/themes.yaml`](data/themes.yaml) — master, editable theme catalogue (single source of truth)
+- [`internal/data/themes.yaml`](internal/data/themes.yaml) — embedded copy baked into the binary (sync with `make sync-themes`)
+
+See [`data/README.md`](data/README.md) for why both files exist and the
+master → sync → embed flow.
 
 **Next codename:**
 ```bash
@@ -390,13 +405,23 @@ go run ./cmd/tools/next-codename
 
 ## Themes
 
-TAGtastic includes multiple codename themes:
+TAGtastic ships nine embedded themes (run `tagtastic themes` to list them):
 
-- `crayola_colors` — Crayola crayon colors (default)
-- `birds` — Bird species
-- `cities` — World cities
-- `landmarks` — Famous landmarks
-- And more (run `tagtastic themes` to see all)
+| Theme              | Category | Notes                                                                               |
+| ------------------ | -------- | ----------------------------------------------------------------------------------- |
+| `crayola_colors`   | Colors   | Crayola crayon colors. Default theme; also drives TAGtastic's own release codenames |
+| `birds`            | Nature   | Generic bird species                                                                |
+| `cities`           | Places   | World cities                                                                        |
+| `landmarks`        | Places   | Famous natural landmarks                                                            |
+| `arabian_mammals`  | Nature   | Arabian Peninsula land mammals (EN + Arabic)                                        |
+| `arabian_birds`    | Nature   | Arabian Peninsula and Gulf birds (EN + Arabic)                                      |
+| `arabian_trees`    | Nature   | Native Arabian trees and woody plants (EN + Arabic)                                 |
+| `arabian_reptiles` | Nature   | Arabian lizards, snakes, and sea turtles (EN + Arabic)                              |
+| `arabian_marine`   | Nature   | Arabian Gulf, Sea of Oman, and Arabian Sea marine life (EN + Arabic)                |
+
+The Arabian themes were curated from the corpora documented at
+[`docs/arabian-wildlife-datasets/`](../docs/arabian-wildlife-datasets/) and
+are attributed in the Credits section below.
 
 ### Custom Themes
 
@@ -438,8 +463,8 @@ tagtastic-repo/
 │   ├── data/               # Theme repository and types
 │   └── output/             # Output formatters (text, JSON, shell)
 ├── data/
-│   ├── themes.yaml         # Theme definitions (source)
-│   └── crayola.json        # Crayola colors raw data
+│   ├── README.md           # Why this folder exists; master → sync → embed flow
+│   └── themes.yaml         # Master, editable theme catalogue (single source of truth)
 ├── .github/workflows/      # CI/CD automation
 ├── .goreleaser.yaml        # GoReleaser configuration
 ├── Makefile                # Build and development tasks
@@ -562,6 +587,23 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 ## Credits
 
+**Tooling:**
+
 - **CLI Framework:** [Kong](https://github.com/alecthomas/kong) by Alec Thomas
 - **Release Automation:** [GoReleaser](https://goreleaser.com/)
-- **Codename Data:** [Corpora](https://github.com/dariusk/corpora) by Darius Kazemi
+- **Security Scanning:** [gosec](https://github.com/securego/gosec)
+
+**Theme data sources:**
+
+- `crayola_colors` — [Corpora](https://github.com/dariusk/corpora) by Darius Kazemi (CC0 / public domain)
+- `arabian_mammals`, `arabian_birds`, `arabian_trees`, `arabian_reptiles`, `arabian_marine` — curated from the corpora pack at [`docs/arabian-wildlife-datasets/`](../docs/arabian-wildlife-datasets/), cross-validated against:
+  - [Saudi National Center for Wildlife (NCW)](https://www.ncw.gov.sa/en/open-data) — open-data portal
+  - [Environment Agency – Abu Dhabi (EAD)](https://www.ead.gov.ae/) — biodiversity authority
+  - [UAE Union Atlas – Wildlife](https://atlas.fgic.gov.ae/uaeatlas/Environment/WildLife?lang=en)
+  - [UAE Flora](https://www.uaeflora.ae/) and [Flora of Arabia](https://www.floraofarabia.com/)
+  - [Oman Open Data](https://opendata.gov.om/) — rescued animals/birds dataset
+  - [Fujairah Research Centre](https://www.frc.ae/) (Wadi Wurayah) and [Dubai Desert Conservation Reserve](https://www.ddcr.org/en/)
+  - Wikipedia regional articles (Fauna/Flora of UAE, SA, Oman, Qatar, Bahrain; Persian Gulf; List of birds of the UAE) — text portions licensed CC BY-SA 4.0
+  - Reference databases: [IUCN Red List](https://www.iucnredlist.org/), [GBIF](https://www.gbif.org/), [Avibase](https://avibase.bsc-eoc.org/), [AVONET](https://opentraits.org/datasets/avonet)
+
+  Full per-record provenance is captured in [`docs/arabian-wildlife-datasets/datasets/data/meta/sources.json`](../docs/arabian-wildlife-datasets/datasets/data/meta/sources.json). Source URLs are linked references only; each source carries its own terms — consult before redistribution beyond TAGtastic's MIT-licensed embedded use.

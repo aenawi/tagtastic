@@ -78,7 +78,7 @@ func NewCLI(deps Dependencies) *CLI {
 }
 
 type GenerateCmd struct {
-	Theme   string   `short:"t" long:"theme" help:"Theme to use" default:"crayola_colors"`
+	Theme   string   `short:"t" long:"theme" help:"Theme to use" default:"arabian_birds"`
 	Seed    int64    `short:"s" long:"seed" help:"Random seed (0 uses time)" default:"0"`
 	Exclude []string `short:"e" long:"exclude" help:"Comma-separated names to exclude" sep:","`
 	Format  string   `short:"f" long:"format" help:"Output format (text, json, shell)" default:"text"`
@@ -128,7 +128,7 @@ func (cmd GenerateCmd) Run() error {
 }
 
 type ListCmd struct {
-	Theme  string `short:"t" long:"theme" help:"Theme to list" default:"crayola_colors"`
+	Theme  string `short:"t" long:"theme" help:"Theme to list" default:"arabian_birds"`
 	Format string `short:"f" long:"format" help:"Output format (text, json)" default:"text"`
 	deps   Dependencies
 }
