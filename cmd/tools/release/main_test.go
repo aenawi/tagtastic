@@ -91,3 +91,63 @@ func TestResolvePreReleaseVersionInvalidLabel(t *testing.T) {
 		t.Fatalf("expected error for invalid prerelease label")
 	}
 }
+
+// TestUpdateReferenceLines_PrevVersionIsRealTag is a regression test for the
+// "vUnreleased" bug: updateReferenceLines used to pick the lexically-largest
+// existing ref as the previous version, which selected "[Unreleased]" and
+// produced compare URLs like ".../compare/vUnreleased...vX.Y.Z". The fix
+// filters [Unreleased] out before sorting.
+func TestUpdateReferenceLines_PrevVersionIsRealTag(t *testing.T) {
+	existing := []string{
+		"[Unreleased]: https://github.com/infravillage/tagtastic/compare/v0.2.0-beta.1...HEAD",
+		"[0.2.0-beta.1]: https://github.com/infravillage/tagtastic/compare/v0.1.1-beta.1...v0.2.0-beta.1",
+		"[0.1.1-beta.1]: https://github.com/infravillage/tagtastic/compare/v0.1.0-beta.2...v0.1.1-beta.1",
+	}
+
+	refs := updateReferenceLines(existing, "0.2.0")
+
+	joined := strings.Join(refs, "\n")
+	if strings.Contains(joined, "vUnreleased") {
+		t.Fatalf("refs must not contain literal vUnreleased, got:\n%s", joined)
+	}
+	wantRelease := "[0.2.0]: https://github.com/infravillage/tagtastic/compare/v0.2.0-beta.1...v0.2.0"
+	if !strings.Contains(joined, wantRelease) {
+		t.Fatalf("expected new release ref %q in output, got:\n%s", wantRelease, joined)
+	}
+	wantUnreleased := "[Unreleased]: https://github.com/infravillage/tagtastic/compare/v0.2.0...HEAD"
+	if !strings.Contains(joined, wantUnreleased) {
+		t.Fatalf("expected updated unreleased ref %q in output, got:\n%s", wantUnreleased, joined)
+	}
+}
+
+// TestUpdateReferenceLines_DedupesUnreleasedAndCurrentVersion guards against
+// the accumulating-duplicates bug: re-running the helper on a changelog that
+// already contains the target version's ref or stale [Unreleased] refs must
+// produce exactly one of each.
+func TestUpdateReferenceLines_DedupesUnreleasedAndCurrentVersion(t *testing.T) {
+	existing := []string{
+		"[Unreleased]: https://github.com/infravillage/tagtastic/compare/v0.2.0...HEAD",
+		"[Unreleased]: https://github.com/infravillage/tagtastic/compare/v0.2.0-beta.1...HEAD",
+		"[0.2.0]: https://github.com/infravillage/tagtastic/compare/vUnreleased...v0.2.0",
+		"[0.2.0-beta.1]: https://github.com/infravillage/tagtastic/compare/v0.1.1-beta.1...v0.2.0-beta.1",
+	}
+
+	refs := updateReferenceLines(existing, "0.2.0")
+
+	unreleasedCount := 0
+	versionCount := 0
+	for _, line := range refs {
+		if strings.HasPrefix(line, "[Unreleased]:") {
+			unreleasedCount++
+		}
+		if strings.HasPrefix(line, "[0.2.0]:") {
+			versionCount++
+		}
+	}
+	if unreleasedCount != 1 {
+		t.Fatalf("expected exactly 1 [Unreleased]: ref, got %d:\n%s", unreleasedCount, strings.Join(refs, "\n"))
+	}
+	if versionCount != 1 {
+		t.Fatalf("expected exactly 1 [0.2.0]: ref, got %d:\n%s", versionCount, strings.Join(refs, "\n"))
+	}
+}
