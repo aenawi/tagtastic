@@ -16,6 +16,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - N/A
 
+## [0.2.1] – "Arabian Green Bee-eater" – 2026-05-17
+
+### Fixed
+- **Release helper no longer writes `vUnreleased` into CHANGELOG compare URLs.** `cmd/tools/release` used to sort existing link refs descending and pick `[Unreleased]` (which sorts after every `[0.x.y]`) as the previous version, producing broken links like `.../compare/vUnreleased...v0.2.0`. The helper now filters `[Unreleased]:` out before picking the previous tag and skips any existing ref for the version being released, so re-runs produce exactly one ref per version.
+- **Release helper preserves the blank line before `## [Unreleased]`** when rewriting `CHANGELOG.md`. The previous join collapsed the preamble onto the heading (`...Semantic Versioning).## [Unreleased]`), which broke markdown rendering and had to be hand-patched during the v0.2.0 cut.
+- Patched the two stale `vUnreleased` lines in `CHANGELOG.md` for v0.2.0 and v0.2.0-beta.1; all link refs now point to real previous tags.
+
+### Changed
+- **Pinned gosec to v2.23.0** (latest version compatible with the Go 1.24 floor in `go.mod`). The Makefile exposes the pin as `GOSEC_VERSION` and CI inherits it via `make security`. Eliminates the local-vs-CI drift that caused a surprise CI failure during the v0.2.0 cut (CI's `@latest` install introduced rule G703 that local gosec didn't have).
+- Bumped GitHub Actions to Node 24 majors: `actions/checkout` v4→v6, `actions/setup-go` v5→v6, `goreleaser/goreleaser-action` v6→v7. Addresses the Node 20 deprecation warnings that surfaced in v0.2.0 CI logs.
+
+### Added
+- Three regression tests in `cmd/tools/release/main_test.go` covering the link-ref dedup, previous-tag selection, and preamble-newline preservation. Coverage on `cmd/tools/release` rose from 20.9% to 35.1%.
+- Five `#nosec` annotations (2× G115 for `os.Stdout.Fd()` int conversion, 3× G705 for JSON error formatting to stderr) suppressing false positives that surfaced when pinning gosec to v2.23.0. All match the existing project convention with one-line justifications.
+
 ## [0.2.0] – "Arabian Babbler" – 2026-05-17
 
 ### ⚠️ Breaking changes
@@ -105,9 +120,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]: https://github.com/aenawi/tagtastic/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/aenawi/tagtastic/compare/vUnreleased...v0.2.0
-[0.2.0-beta.1]: https://github.com/aenawi/tagtastic/compare/vUnreleased...v0.2.0-beta.1
+
+[Unreleased]: https://github.com/aenawi/tagtastic/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/aenawi/tagtastic/compare/v0.2.0...v0.2.1
+[0.2.0]: https://github.com/aenawi/tagtastic/compare/v0.2.0-beta.1...v0.2.0
+[0.2.0-beta.1]: https://github.com/aenawi/tagtastic/compare/v0.1.1-beta.1...v0.2.0-beta.1
 [0.1.1-beta.1]: https://github.com/aenawi/tagtastic/compare/v0.1.0-beta.2...v0.1.1-beta.1
 [0.1.0-beta.2]: https://github.com/aenawi/tagtastic/compare/v0.1.0-beta.1...v0.1.0-beta.2
 [0.1.0-beta.1]: https://github.com/aenawi/tagtastic/compare/v0.1.0-alpha.1...v0.1.0-beta.1

@@ -88,6 +88,7 @@ func shouldShowBanner(args []string) bool {
 	if os.Getenv("CI") != "" {
 		return false
 	}
+	// #nosec G115 - os.Stdout.Fd() returns a small fd (0-2); int conversion cannot overflow
 	return term.IsTerminal(int(os.Stdout.Fd()))
 }
 
@@ -285,6 +286,7 @@ func resolveVersion(value string) string {
 
 func reportParseError(err error, jsonErrors bool) {
 	if jsonErrors {
+		// #nosec G705 - CLI stderr output, %q escapes; no web/HTML context
 		fmt.Fprintf(os.Stderr, "{\"error\":%q,\"type\":\"parse\",\"code\":2}\n", err.Error())
 		os.Exit(2)
 	}
@@ -295,6 +297,7 @@ func reportParseError(err error, jsonErrors bool) {
 
 func reportRunError(err error, jsonErrors bool) {
 	if jsonErrors {
+		// #nosec G705 - CLI stderr output, %q escapes; no web/HTML context
 		fmt.Fprintf(os.Stderr, "{\"error\":%q,\"type\":\"runtime\",\"code\":1}\n", err.Error())
 		os.Exit(1)
 	}
