@@ -5,7 +5,6 @@
 package main
 
 import (
-	"encoding/json"
 	"errors"
 	"flag"
 	"fmt"
@@ -20,16 +19,13 @@ import (
 	"time"
 
 	"github.com/infravillage/tagtastic/internal/config"
+	"github.com/infravillage/tagtastic/internal/data"
 	"golang.org/x/term"
 )
 
-type colorEntry struct {
-	Color string `json:"color"`
-}
-
-type colorFile struct {
-	Colors []colorEntry `json:"colors"`
-}
+// codenameThemeID names the theme inside internal/data/themes.yaml that
+// supplies TAGtastic's own release codenames (alphabetical Crayola colors).
+const codenameThemeID = "crayola_colors"
 
 const unreleasedTemplate = `## [Unreleased]
 
@@ -155,7 +151,7 @@ func main() {
 
 	resolvedCodename := strings.TrimSpace(*codename)
 	if resolvedCodename == "" {
-		resolvedCodename, err = nextCodename(filepath.Join(root, "data", "crayola.json"), filepath.Join(root, "CHANGELOG.md"))
+		resolvedCodename, err = nextCodename(filepath.Join(root, "CHANGELOG.md"))
 		if err != nil {
 			reportError(err, 1, jsonEnabled, quietEnabled, func() { printUsage(!quietEnabled) })
 		}
@@ -221,15 +217,18 @@ func renderBanner() string {
 	return strings.Join(lines, "\n")
 }
 
-func nextCodename(colorsPath, changelogPath string) (string, error) {
-	payload, err := os.ReadFile(colorsPath)
+// nextCodename returns the alphabetically next codename from the embedded
+// codename theme that has not yet appeared in CHANGELOG.md. The codename
+// list lives in internal/data/themes.yaml (single source of truth) — see
+// data/README.md for why that file is the system of record.
+func nextCodename(changelogPath string) (string, error) {
+	repo, err := data.NewEmbeddedThemeRepository()
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("load themes: %w", err)
 	}
-
-	var file colorFile
-	if err := json.Unmarshal(payload, &file); err != nil {
-		return "", err
+	theme, err := repo.GetThemeByName(codenameThemeID)
+	if err != nil {
+		return "", fmt.Errorf("load %q theme: %w", codenameThemeID, err)
 	}
 
 	used := make(map[string]struct{})
@@ -242,8 +241,8 @@ func nextCodename(colorsPath, changelogPath string) (string, error) {
 		}
 	}
 
-	for _, entry := range file.Colors {
-		name := strings.TrimSpace(entry.Color)
+	for _, item := range theme.Items {
+		name := strings.TrimSpace(item.Name)
 		if name == "" {
 			continue
 		}
