@@ -204,6 +204,7 @@ func shouldShowBanner() bool {
 	if os.Getenv("CI") != "" {
 		return false
 	}
+	// #nosec G115 - os.Stdout.Fd() returns a small fd (0-2); int conversion cannot overflow
 	return term.IsTerminal(int(os.Stdout.Fd()))
 }
 
@@ -276,7 +277,17 @@ func updateChangelog(path, version, codename, date string) error {
 
 	releaseBlock := fmt.Sprintf("%s\n\n%s\n\n", releaseHeader, newRelease)
 
-	updated := sections.preamble + unreleasedTemplate + "\n" + releaseBlock + sections.remainder
+	// Normalize the preamble so it always ends with exactly one blank line
+	// before the next heading. splitChangelog leaves preamble with whatever
+	// trailing whitespace happened to be in the source file (often a single
+	// '\n'), which when concatenated against the '## [Unreleased]' header
+	// produced no separating blank line.
+	preamble := strings.TrimRight(sections.preamble, "\n")
+	if preamble != "" {
+		preamble += "\n\n"
+	}
+
+	updated := preamble + unreleasedTemplate + "\n" + releaseBlock + sections.remainder
 	updated = updateChangelogLinks(updated, version)
 
 	return os.WriteFile(path, []byte(updated), 0o644)
@@ -352,16 +363,25 @@ func updateChangelogLinks(content, version string) string {
 }
 
 func updateReferenceLines(lines []string, version string) []string {
-	var refs []string
 	var releases []string
 
+	// Keep only versioned release refs. Drop any prior [Unreleased]: lines
+	// (we rewrite that ref below) and skip any existing ref for `version`
+	// to avoid duplicating it on re-runs of the helper.
 	for _, line := range lines {
-		if strings.HasPrefix(line, "[") {
-			releases = append(releases, line)
+		if !strings.HasPrefix(line, "[") {
 			continue
 		}
+		label := extractVersion(line)
+		if label == "" || label == "Unreleased" || label == version {
+			continue
+		}
+		releases = append(releases, line)
 	}
 
+	// Pick the previous version: highest-sorting existing release ref.
+	// With [Unreleased] already filtered out, the sort yields the
+	// alphabetically/SemVer-ish latest version.
 	prevVersion := ""
 	if len(releases) > 0 {
 		sort.SliceStable(releases, func(i, j int) bool {
@@ -378,7 +398,7 @@ func updateReferenceLines(lines []string, version string) []string {
 
 	unreleased := fmt.Sprintf("[Unreleased]: https://github.com/aenawi/tagtastic/compare/v%s...HEAD", version)
 
-	refs = append(refs, unreleased)
+	refs := []string{unreleased}
 	refs = append(refs, releases...)
 	return refs
 }
@@ -764,6 +784,7 @@ func hasFlag(args []string, names ...string) bool {
 
 func reportError(err error, code int, jsonErrors, quiet bool, usage func()) {
 	if jsonErrors {
+		// #nosec G705 - CLI stderr output, %q escapes; no web/HTML context
 		fmt.Fprintf(os.Stderr, "{\"error\":%q,\"code\":%d}\n", err.Error(), code)
 		os.Exit(code)
 	}
