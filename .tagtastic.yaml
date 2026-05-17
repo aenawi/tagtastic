@@ -6,6 +6,7 @@ used_codenames:
     0.2.0: Arabian Babbler
     0.2.0-beta.1: Asparagus
     0.2.1: Arabian Green Bee-eater
+    0.2.2: Arabian Partridge
 api:
     enabled: false
     endpoint: ""
