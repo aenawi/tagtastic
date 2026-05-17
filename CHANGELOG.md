@@ -7,13 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- N/A
+- Five new themes covering Arabian Peninsula and Arab Gulf wildlife: `arabian_mammals` (31 items), `arabian_birds` (62 items), `arabian_trees` (31 items), `arabian_reptiles` (24 items), and `arabian_marine` (30 items). Each item carries an English display name, dash-slug aliases, and a description containing the scientific name and Arabic vernacular.
+- New `data/README.md` explaining the master → sync → embed flow and why both `data/themes.yaml` and `internal/data/themes.yaml` exist.
 
 ### Changed
-- N/A
+- **Release codename theme switched from `crayola_colors` to `arabian_birds`.** Starting with v0.2.0, TAGtastic releases are named after Arabian Peninsula bird species. Earlier releases (v0.1.0-alpha.1 through v0.2.0-beta.1) used Crayola crayon colours; the legacy `crayola_colors` theme remains available to end users via `--theme crayola_colors`.
+- Consolidated the Crayola colour catalogue: `cmd/tools/next-codename` and `cmd/tools/release` now read directly from the embedded `crayola_colors` theme in `internal/data/themes.yaml` instead of a parallel `data/crayola.json` snapshot.
+- README "Themes" section expanded into a 9-row table; Credits section split into "Tooling" and "Theme data sources" with full attribution for the Arabian wildlife pack (NCW, EAD, UAE Atlas, UAE Flora, Flora of Arabia, Oman Open Data, Fujairah Research Centre, DDCR, Wikipedia CC BY-SA 4.0, IUCN, GBIF, Avibase, AVONET).
+- `themes` JSON golden snapshot regenerated to include the five new theme IDs.
 
-### Fixed
-- N/A
+### Removed
+- `data/crayola.json` — the colour catalogue lives in `data/themes.yaml` as the single source of truth.
 
 ## [0.2.0-beta.1] – "Asparagus" – 2026-01-04
 
