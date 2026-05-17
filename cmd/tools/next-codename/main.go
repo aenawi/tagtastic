@@ -3,24 +3,27 @@
 //
 // This file is part of TAGtastic and is licensed under the MIT License.
 
+// next-codename prints the alphabetically next item from the release
+// codename theme that has not yet been used as a TAGtastic release
+// codename. The item list comes from the embedded codename theme
+// (internal/data/themes.yaml); used codenames are detected by parsing
+// CHANGELOG.md.
 package main
 
 import (
 	"bufio"
-	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/infravillage/tagtastic/internal/data"
 )
 
-type colorEntry struct {
-	Color string `json:"color"`
-}
-
-type colorFile struct {
-	Colors []colorEntry `json:"colors"`
-}
+// codenameThemeID is the theme inside internal/data/themes.yaml that
+// supplies TAGtastic's own release codenames. Switched from
+// crayola_colors to arabian_birds at v0.2.0.
+const codenameThemeID = "arabian_birds"
 
 func main() {
 	root, err := repoRoot()
@@ -28,7 +31,7 @@ func main() {
 		fatal(err)
 	}
 
-	colors, err := loadColors(filepath.Join(root, "data", "crayola.json"))
+	colors, err := loadCodenameTheme()
 	if err != nil {
 		fatal(err)
 	}
@@ -46,7 +49,7 @@ func main() {
 		return
 	}
 
-	fatal(fmt.Errorf("no available codenames left in crayola.json"))
+	fatal(fmt.Errorf("no available codenames left in theme %q", codenameThemeID))
 }
 
 func repoRoot() (string, error) {
@@ -57,27 +60,28 @@ func repoRoot() (string, error) {
 	return wd, nil
 }
 
-func loadColors(path string) ([]string, error) {
-	payload, err := os.ReadFile(path)
+// loadCodenameTheme returns the item display names from the embedded
+// crayola_colors theme in declaration order (which is alphabetical in the
+// shipped themes.yaml).
+func loadCodenameTheme() ([]string, error) {
+	repo, err := data.NewEmbeddedThemeRepository()
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("load themes: %w", err)
+	}
+	theme, err := repo.GetThemeByName(codenameThemeID)
+	if err != nil {
+		return nil, fmt.Errorf("load %q theme: %w", codenameThemeID, err)
 	}
 
-	var file colorFile
-	if err := json.Unmarshal(payload, &file); err != nil {
-		return nil, err
-	}
-
-	colors := make([]string, 0, len(file.Colors))
-	for _, entry := range file.Colors {
-		name := strings.TrimSpace(entry.Color)
+	names := make([]string, 0, len(theme.Items))
+	for _, item := range theme.Items {
+		name := strings.TrimSpace(item.Name)
 		if name == "" {
 			continue
 		}
-		colors = append(colors, name)
+		names = append(names, name)
 	}
-
-	return colors, nil
+	return names, nil
 }
 
 func loadUsedCodenames(path string) (map[string]struct{}, error) {
