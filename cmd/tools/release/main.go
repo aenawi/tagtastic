@@ -181,14 +181,18 @@ func main() {
 		reportError(err, 1, jsonEnabled, quietEnabled, func() { printUsage(!quietEnabled) })
 	}
 
-	if *commit {
-		if err := commitRelease(version, resolvedCodename); err != nil {
+	// Update .tagtastic.yaml BEFORE staging/committing so commitRelease
+	// picks up the new used_codenames entry. Previously the order was
+	// reversed and the codename addition was left uncommitted in the
+	// working tree.
+	if !*noConfigUpdate {
+		if err := updateRepoConfig(configTarget, resolvedCodename, version); err != nil {
 			reportError(err, 1, jsonEnabled, quietEnabled, func() { printUsage(!quietEnabled) })
 		}
 	}
 
-	if !*noConfigUpdate {
-		if err := updateRepoConfig(configTarget, resolvedCodename, version); err != nil {
+	if *commit {
+		if err := commitRelease(root, version, resolvedCodename); err != nil {
 			reportError(err, 1, jsonEnabled, quietEnabled, func() { printUsage(!quietEnabled) })
 		}
 	}
@@ -755,8 +759,12 @@ func createTag(version, codename string) error {
 	return cmd.Run()
 }
 
-func commitRelease(version, codename string) error {
-	cmd := exec.Command("git", "add", "CHANGELOG.md", "VERSION")
+func commitRelease(root, version, codename string) error {
+	paths := releaseCommitPaths(root)
+
+	addArgs := append([]string{"add"}, paths...)
+	// #nosec G204 - paths comes from releaseCommitPaths, a fixed allow-list
+	cmd := exec.Command("git", addArgs...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
@@ -769,6 +777,19 @@ func commitRelease(version, codename string) error {
 	commitCmd.Stdout = os.Stdout
 	commitCmd.Stderr = os.Stderr
 	return commitCmd.Run()
+}
+
+// releaseCommitPaths returns the repo-relative paths to stage for a release
+// commit. CHANGELOG.md and VERSION are always written by the helper.
+// .tagtastic.yaml is included only when it exists at the repo root — it is
+// written by updateRepoConfig (unless --no-config-update was passed) and
+// carries the used_codenames audit trail per README.md.
+func releaseCommitPaths(root string) []string {
+	paths := []string{"CHANGELOG.md", "VERSION"}
+	if _, err := os.Stat(filepath.Join(root, ".tagtastic.yaml")); err == nil {
+		paths = append(paths, ".tagtastic.yaml")
+	}
+	return paths
 }
 
 func hasFlag(args []string, names ...string) bool {
