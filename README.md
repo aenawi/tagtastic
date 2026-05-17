@@ -377,9 +377,11 @@ This project uses **Crayola colors** from the [Corpora repository](https://githu
 
 **Data sources:**
 
-- `data/crayola.json`: Raw Corpora snapshot
-- `data/themes.yaml`: Structured theme data
-- `internal/data/themes.yaml`: Embedded copy (sync with `make sync-themes`)
+- [`data/themes.yaml`](data/themes.yaml) — master, editable theme catalogue (single source of truth)
+- [`internal/data/themes.yaml`](internal/data/themes.yaml) — embedded copy baked into the binary (sync with `make sync-themes`)
+
+See [`data/README.md`](data/README.md) for why both files exist and the
+master → sync → embed flow.
 
 **Next codename:**
 ```bash
