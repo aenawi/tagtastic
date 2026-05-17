@@ -352,16 +352,25 @@ func updateChangelogLinks(content, version string) string {
 }
 
 func updateReferenceLines(lines []string, version string) []string {
-	var refs []string
 	var releases []string
 
+	// Keep only versioned release refs. Drop any prior [Unreleased]: lines
+	// (we rewrite that ref below) and skip any existing ref for `version`
+	// to avoid duplicating it on re-runs of the helper.
 	for _, line := range lines {
-		if strings.HasPrefix(line, "[") {
-			releases = append(releases, line)
+		if !strings.HasPrefix(line, "[") {
 			continue
 		}
+		label := extractVersion(line)
+		if label == "" || label == "Unreleased" || label == version {
+			continue
+		}
+		releases = append(releases, line)
 	}
 
+	// Pick the previous version: highest-sorting existing release ref.
+	// With [Unreleased] already filtered out, the sort yields the
+	// alphabetically/SemVer-ish latest version.
 	prevVersion := ""
 	if len(releases) > 0 {
 		sort.SliceStable(releases, func(i, j int) bool {
@@ -378,7 +387,7 @@ func updateReferenceLines(lines []string, version string) []string {
 
 	unreleased := fmt.Sprintf("[Unreleased]: https://github.com/aenawi/tagtastic/compare/v%s...HEAD", version)
 
-	refs = append(refs, unreleased)
+	refs := []string{unreleased}
 	refs = append(refs, releases...)
 	return refs
 }
