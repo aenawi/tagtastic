@@ -361,11 +361,18 @@ archives:
 
 ### Release Naming Convention
 
-This project uses **Crayola crayon colors** as release codenames. The
-colour list ships as the `crayola_colors` theme inside
-[`data/themes.yaml`](data/themes.yaml) and is sourced from
+Starting with **v0.2.0**, this project uses **Arabian Peninsula bird
+names** as release codenames. The list ships as the `arabian_birds` theme
+inside [`data/themes.yaml`](data/themes.yaml). Earlier releases
+(v0.1.0-alpha.1 through v0.2.0-beta.1) used Crayola crayon colours from
+the `crayola_colors` theme, sourced from
 [Darius Kazemi's Corpora project](https://github.com/dariusk/corpora)
 (see [`data/colors/crayola.json`](https://github.com/dariusk/corpora/blob/master/data/colors/crayola.json) upstream).
+
+To change the codename theme in the future, update the
+`codenameThemeID` constant in [`cmd/tools/next-codename/main.go`](cmd/tools/next-codename/main.go)
+and [`cmd/tools/release/main.go`](cmd/tools/release/main.go) to any
+theme ID present in `data/themes.yaml`.
 
 **Rules:**
 
@@ -373,10 +380,12 @@ colour list ships as the `crayola_colors` theme inside
 - Recorded in `CHANGELOG.md`, `.tagtastic.yaml`, and git tag annotations
 - SemVer tags remain the source of truth (`v1.0.0-beta.1`)
 
-**Example changelog entry:**
+**Example changelog entries:**
 
 ```markdown
-## [0.1.0-beta.1] – "Almond" – 2026-01-03
+## [0.2.0]         – "Arabian Babbler" – 2026-05-17   (new theme: arabian_birds)
+## [0.2.0-beta.1]  – "Asparagus"       – 2026-01-04   (legacy theme: crayola_colors)
+## [0.1.0-beta.1]  – "Almond"          – 2026-01-03   (legacy theme: crayola_colors)
 ```
 
 **Data sources:**
