@@ -92,6 +92,50 @@ func TestResolvePreReleaseVersionInvalidLabel(t *testing.T) {
 	}
 }
 
+// TestReleaseCommitPaths_IncludesTagtasticYaml is a regression test for the
+// missing .tagtastic.yaml in release commits: commitRelease used to stage
+// only CHANGELOG.md and VERSION, leaving the used_codenames audit-trail
+// update uncommitted in the working tree. Verifies that when .tagtastic.yaml
+// exists at the repo root it is included in the list of paths to stage.
+func TestReleaseCommitPaths_IncludesTagtasticYaml(t *testing.T) {
+	tmp := t.TempDir()
+	if err := os.WriteFile(filepath.Join(tmp, ".tagtastic.yaml"), []byte("default_theme: x\n"), 0o644); err != nil {
+		t.Fatalf("seed config: %v", err)
+	}
+
+	paths := releaseCommitPaths(tmp)
+
+	want := map[string]bool{"CHANGELOG.md": false, "VERSION": false, ".tagtastic.yaml": false}
+	for _, p := range paths {
+		if _, ok := want[p]; ok {
+			want[p] = true
+		}
+	}
+	for p, found := range want {
+		if !found {
+			t.Fatalf("expected releaseCommitPaths to include %q, got %v", p, paths)
+		}
+	}
+}
+
+// TestReleaseCommitPaths_OmitsTagtasticYamlWhenAbsent guards the inverse:
+// projects without a repo-local .tagtastic.yaml (e.g. user-global config
+// via --config) must not have a non-existent path forced into git add.
+func TestReleaseCommitPaths_OmitsTagtasticYamlWhenAbsent(t *testing.T) {
+	tmp := t.TempDir() // no .tagtastic.yaml seeded
+
+	paths := releaseCommitPaths(tmp)
+
+	for _, p := range paths {
+		if p == ".tagtastic.yaml" {
+			t.Fatalf("releaseCommitPaths must not include .tagtastic.yaml when the file is absent; got %v", paths)
+		}
+	}
+	if len(paths) < 2 {
+		t.Fatalf("expected at least CHANGELOG.md and VERSION in paths, got %v", paths)
+	}
+}
+
 // TestUpdateChangelog_PreservesBlankLineBeforeUnreleased is a regression test
 // for the preamble-newline bug: splitChangelog's preamble ends in a single
 // '\n', which when concatenated against unreleasedTemplate produced
