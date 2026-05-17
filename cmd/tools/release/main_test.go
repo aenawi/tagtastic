@@ -92,6 +92,65 @@ func TestResolvePreReleaseVersionInvalidLabel(t *testing.T) {
 	}
 }
 
+// TestUpdateChangelog_PreservesBlankLineBeforeUnreleased is a regression test
+// for the preamble-newline bug: splitChangelog's preamble ends in a single
+// '\n', which when concatenated against unreleasedTemplate produced
+// "Semantic Versioning].## [Unreleased]" on one line. Verifies the rewritten
+// file has a blank line between the preamble and the [Unreleased] heading.
+func TestUpdateChangelog_PreservesBlankLineBeforeUnreleased(t *testing.T) {
+	const seed = `# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+- Feature X.
+
+## [0.1.0] – "Almond" – 2026-01-01
+
+### Added
+- Initial release.
+
+[Unreleased]: https://github.com/aenawi/tagtastic/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/aenawi/tagtastic/releases/tag/v0.1.0
+`
+
+	tmp := t.TempDir()
+	path := filepath.Join(tmp, "CHANGELOG.md")
+	if err := os.WriteFile(path, []byte(seed), 0o644); err != nil {
+		t.Fatalf("seed changelog: %v", err)
+	}
+
+	if err := updateChangelog(path, "0.2.0", "Arabian Babbler", "2026-05-17"); err != nil {
+		t.Fatalf("updateChangelog failed: %v", err)
+	}
+
+	out, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatalf("read updated changelog: %v", err)
+	}
+	got := string(out)
+
+	// The bug produced "Semantic Versioning).## [Unreleased]" on one line.
+	if strings.Contains(got, ").## [Unreleased]") {
+		t.Fatalf("preamble collapsed onto Unreleased heading without blank line:\n%s", got)
+	}
+	// Positive assertion: there must be a blank line between the preamble's
+	// last sentence and the next ## heading.
+	const wantSeparator = "v2.0.0.html).\n\n## [Unreleased]"
+	if !strings.Contains(got, wantSeparator) {
+		t.Fatalf("expected blank line before ## [Unreleased]; output:\n%s", got)
+	}
+	// Sanity: the new release header for v0.2.0 must be present.
+	if !strings.Contains(got, `## [0.2.0] – "Arabian Babbler" – 2026-05-17`) {
+		t.Fatalf("expected new release header in output:\n%s", got)
+	}
+}
+
 // TestUpdateReferenceLines_PrevVersionIsRealTag is a regression test for the
 // "vUnreleased" bug: updateReferenceLines used to pick the lexically-largest
 // existing ref as the previous version, which selected "[Unreleased]" and
