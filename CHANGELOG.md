@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- N/A
+
+### Changed
+- N/A
+
+### Fixed
+- N/A
+
+## [0.2.1] – "Arabian Green Bee-eater" – 2026-05-17
+
 ### Fixed
 - **Release helper no longer writes `vUnreleased` into CHANGELOG compare URLs.** `cmd/tools/release` used to sort existing link refs descending and pick `[Unreleased]` (which sorts after every `[0.x.y]`) as the previous version, producing broken links like `.../compare/vUnreleased...v0.2.0`. The helper now filters `[Unreleased]:` out before picking the previous tag and skips any existing ref for the version being released, so re-runs produce exactly one ref per version.
 - **Release helper preserves the blank line before `## [Unreleased]`** when rewriting `CHANGELOG.md`. The previous join collapsed the preamble onto the heading (`...Semantic Versioning).## [Unreleased]`), which broke markdown rendering and had to be hand-patched during the v0.2.0 cut.
@@ -109,7 +120,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]: https://github.com/infravillage/tagtastic/compare/v0.2.0...HEAD
+
+[Unreleased]: https://github.com/infravillage/tagtastic/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/infravillage/tagtastic/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/infravillage/tagtastic/compare/v0.2.0-beta.1...v0.2.0
 [0.2.0-beta.1]: https://github.com/infravillage/tagtastic/compare/v0.1.1-beta.1...v0.2.0-beta.1
 [0.1.1-beta.1]: https://github.com/infravillage/tagtastic/compare/v0.1.0-beta.2...v0.1.1-beta.1
