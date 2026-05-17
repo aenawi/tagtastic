@@ -25,6 +25,7 @@ func main() {
 		fatal(err)
 	}
 
+	// #nosec G703 - dest is a fixed relative path under the repo root, no user input
 	if err := os.WriteFile(dest, payload, 0o644); err != nil {
 		fatal(err)
 	}
