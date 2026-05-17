@@ -120,7 +120,7 @@ tagtastic generate --format json
 
 **Generate command:**
 
-- `--theme, -t <theme>`: Theme to use (default: `crayola_colors`)
+- `--theme, -t <theme>`: Theme to use (default: `arabian_birds`, since v0.2.0)
 - `--seed, -s <int>`: Random seed (0 uses current timestamp)
 - `--exclude, -e <items>`: Comma-separated items to exclude
 - `--format, -f <format>`: Output format (`text`, `json`, `shell`)
