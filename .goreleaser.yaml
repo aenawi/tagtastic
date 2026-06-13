@@ -20,6 +20,8 @@ builds:
       - arm64
     env:
       - CGO_ENABLED=0
+    flags:
+      - -trimpath
     ldflags:
       - -s
       - -w
