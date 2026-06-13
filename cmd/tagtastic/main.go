@@ -131,6 +131,7 @@ func renderBanner() string {
 		"╔════════════════════════════════════════════╗",
 		"║                  TAGtastic                 ║",
 		"║        Release codenames for CI/CD         ║",
+		"║          Human-readable codenames          ║",
 		"╚════════════════════════════════════════════╝",
 		fmt.Sprintf("version: %s", displayVersion),
 		fmt.Sprintf("last release codename: %s", defaultValue(codename, "none")),
