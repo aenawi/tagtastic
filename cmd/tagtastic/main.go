@@ -11,11 +11,11 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/alecthomas/kong"
 	"github.com/aenawi/tagtastic/internal/cli"
 	"github.com/aenawi/tagtastic/internal/config"
 	"github.com/aenawi/tagtastic/internal/data"
 	"github.com/aenawi/tagtastic/internal/output"
+	"github.com/alecthomas/kong"
 	"golang.org/x/mod/semver"
 	"golang.org/x/term"
 )
@@ -131,7 +131,6 @@ func renderBanner() string {
 		"╔════════════════════════════════════════════╗",
 		"║                  TAGtastic                 ║",
 		"║        Release codenames for CI/CD         ║",
-		"║          Human-readable codenames          ║",
 		"╚════════════════════════════════════════════╝",
 		fmt.Sprintf("version: %s", displayVersion),
 		fmt.Sprintf("last release codename: %s", defaultValue(codename, "none")),

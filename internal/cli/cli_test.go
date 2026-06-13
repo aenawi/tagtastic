@@ -12,8 +12,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/alecthomas/kong"
 	"github.com/aenawi/tagtastic/internal/data"
+	"github.com/alecthomas/kong"
 )
 
 func runCLI(t *testing.T, args ...string) (string, error) {

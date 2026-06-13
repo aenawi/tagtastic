@@ -217,7 +217,6 @@ func renderBanner() string {
 		"╔════════════════════════════════════════════╗",
 		"║                  TAGtastic                 ║",
 		"║          Release helper (tooling)          ║",
-		"║          Human-readable codenames          ║",
 		"╚════════════════════════════════════════════╝",
 	}
 	return strings.Join(lines, "\n")

@@ -553,11 +553,9 @@ Scope expansion is intentional and conservative. Feature requests and architectu
 
 ### Reporting Security Issues
 
-**Do not report security vulnerabilities through public GitHub issues.**
+If you discover a security vulnerability in TAGtastic, please report it:
 
-If you discover a security vulnerability in TAGtastic, please report it privately:
-
-1. **Email:** Send details to `https://github.com/aenawi/tagtastic/issues` (or create a private security advisory via GitHub)
+1. **GitHub Issues:** Open an issue at <https://github.com/aenawi/tagtastic/issues>
 2. **Include:** Detailed description, steps to reproduce, potential impact, and suggested fix (if available)
 3. **Response time:** We aim to acknowledge reports within 48 hours
 

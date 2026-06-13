@@ -9,5 +9,4 @@
   <rect x="60" y="52" width="8" height="136" fill="#F9A826"/>
   <text x="90" y="110" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700">TAGtastic</text>
   <text x="90" y="156" fill="#CBE3F1" font-family="Arial, Helvetica, sans-serif" font-size="24">Human-readable release codenames for CI/CD workflows</text>
-  <text x="90" y="190" fill="#8FB4C8" font-family="Arial, Helvetica, sans-serif" font-size="18">Human-readable codenames</text>
 </svg>
